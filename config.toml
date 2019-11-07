@@ -1,3 +1,7 @@
-baseURL = "http://example.org/"
+theme = "vanilla-bootstrap-hugo-theme"
+baseURL = "https://deer-y.am/"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "deer-yam"
+
+[params]
+  homeText = "🦌 🍠"
