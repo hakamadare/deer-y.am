@@ -1,0 +1,109 @@
+version: 2.1
+
+orbs:
+  aws-cli: circleci/aws-cli@0.1.13
+  aws-ecr: circleci/aws-ecr@6.2.0
+  kubernetes: circleci/kubernetes@0.3.0
+  buildevents: honeycombio/buildevents@0.2.1
+
+executors:
+  go:
+    parameters:
+      goversion:
+        type: "string"
+        default: "12"
+    docker:
+      - image: "circleci/golang:1.<< parameters.goversion >>"
+
+jobs:
+  setup:
+    executor: go
+    steps:
+      - buildevents/start_trace
+  watch:
+    executor: go
+    steps:
+      - buildevents/watch_build_and_finish
+  publish-sha1-tag-docker-image:
+    executor: go
+    steps:
+      - buildevents/with_job_span:
+          steps:
+            - checkout
+            - run:
+                name: "checkout-submodules"
+                command: |
+                  git submodule init
+                  git submodule update
+            - setup_remote_docker
+            - aws-ecr/build-and-push-image:
+                checkout: false
+                repo: "${ECR_REPO_PROD}"
+                tag: "${CIRCLE_SHA1}"
+  publish-latest-tag-docker-image:
+    executor: go
+    steps:
+      - buildevents/with_job_span:
+          steps:
+            - checkout
+            - run:
+                name: "checkout-submodules"
+                command: |
+                  git submodule init
+                  git submodule update
+            - setup_remote_docker
+            - aws-ecr/build-and-push-image:
+                checkout: false
+                repo: "${ECR_REPO_PROD}"
+                tag: "latest"
+  update-version-configmap:
+    executor: go
+    steps:
+      - buildevents/with_job_span:
+          steps:
+            - checkout
+            - kubernetes/install
+            - aws-cli/install
+            - aws-cli/configure
+            - run:
+                name: "update-kubeconfig"
+                command: |
+                  aws eks update-kubeconfig --name "${EKS_CLUSTER}"
+            - run:
+                name: "generate-configmap-manifest"
+                command: |
+                  sed "s/CIRCLE_SHA1/${CIRCLE_SHA1}/" k8s/configmap_version.yaml.tpl > k8s/configmap_version.yaml
+            - kubernetes/create-or-update-resource:
+                namespace: "${EKS_NAMESPACE}"
+                resource-file-path: "k8s/configmap_version.yaml"
+                show-kubectl-command: true
+
+
+workflows:
+  version: 2
+  build-and-publish-docker-image:
+    jobs:
+      - setup:
+          context: "vecna.org"
+      - watch:
+          context: "vecna.org"
+          requires:
+            - setup
+      - publish-sha1-tag-docker-image:
+          context: "vecna.org"
+          requires:
+            - setup
+      - publish-latest-tag-docker-image:
+          context: "vecna.org"
+          requires:
+            - setup
+          filters:
+            branches:
+              only: "master"
+      - update-version-configmap:
+          context: "vecna.org"
+          requires:
+            - publish-latest-tag-docker-image
+          filters:
+            branches:
+              only: "master"
