@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/hakamadare
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://deer-y.am
+  * I am hakamadare (https://keybase.io/hakamadare) on keybase.
+  * I have a public key ASBnVmdt1m8jyDk4Il6SYzXe_npMZuCUK7HzcUT0qxNqVgo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01113b101439c3fc799d8e61c86e72ae976608f134cfd3cf43d9d407eec263a2d15d0a",
+      "host": "keybase.io",
+      "kid": "01206756676dd66f23c83938225e926335defe7a4c66e0942bb1f37144f4ab136a560a",
+      "uid": "e41c0fe675b4612c2c350c6c48250a00",
+      "username": "hakamadare"
+    },
+    "merkle_root": {
+      "ctime": 1573482064,
+      "hash": "60828bae1267d6e22623ee30760fab89a0a4cb6371afd3546d8bb9c8847fabe0a2c7bc25233cada0113de0bcce605f9f3f8cbc3a282152e6b39d52c929747185",
+      "hash_meta": "8416b940f1228de9ffec67d3ba9e91c09951d7955372de88bc3dcf4c12a6fe11",
+      "seqno": 9150804
+    },
+    "service": {
+      "entropy": "HhXcPiPTEIikd+mkGT1blTPm",
+      "hostname": "deer-y.am",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "4.7.2"
+  },
+  "ctime": 1573482080,
+  "expire_in": 504576000,
+  "prev": "ea49cbc6d6c735cf610365ec53cc83dc3174f6dd70e48f5163a7009bca60c750",
+  "seqno": 271,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgZ1ZnbdZvI8g5OCJekmM13v56TGbglCux83FE9KsTalYKp3BheWxvYWTETJcCzQEPxCDqScvG1sc1z2EDZexTzIPcMXT23XDkj1FjpwCbymDHUMQgPYKtXPpIu1iurpA4g1NhF2C1uzFSSS8Hj9OtM/IEU/wCAcKjc2lnxEB67s1/fHzyE3WTRlArlvWxQJZJvA1ELkKFX3vxgBB6L3gxhYsZUNQMhgEVRKTsg2lgav58RjO+Wg6DR33kwG0IqHNpZ190eXBlIKRoYXNogqR0eXBlCKV2YWx1ZcQg19CDMbZElBBppk6VZ9gG53m84REHgX3GG0pkfD4N+DSjdGFnzQICp3ZlcnNpb24B
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/hakamadare
+
+==================================================================
