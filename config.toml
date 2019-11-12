@@ -3,5 +3,7 @@ baseURL = "https://deer-y.am/"
 languageCode = "en-us"
 title = "deer-yam"
 
+googleAnalytics = "UA-152038167-1"
+
 [params]
   homeText = "🦌 🍠"
