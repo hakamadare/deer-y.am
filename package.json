@@ -1,0 +1,25 @@
+{
+  "name": "deer-y.am",
+  "version": "1.0.0",
+  "description": "Tooling for deer-y.am",
+  "main": "index.js",
+  "scripts": {
+    "prereqs": "brew bundle",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "hugo -v --enableGitInfo --cleanDestinationDir",
+    "deploy": "yarn ipfs-deploy --pinner infura --no-open --no-clipboard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hakamadare/deer-y.am.git"
+  },
+  "author": "Steve Huff <shuff@indigoag.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hakamadare/deer-y.am/issues"
+  },
+  "homepage": "https://deer-y.am",
+  "dependencies": {
+    "ipfs-deploy": "^7.13.0"
+  }
+}
