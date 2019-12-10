@@ -6,7 +6,9 @@
   {{ . }}
 {{ else }}
   <h1>{{ .Site.Title }}</h1>
-  <p class="font-1000">{{ .Site.Params.homeText | markdownify }}</p>
+  <span title="Yambi the deer-yamming deer">
+    <p class="font-1000">{{ .Site.Params.homeText | markdownify }}</p>
+  </span>
 {{ end }}
 </div>
 
